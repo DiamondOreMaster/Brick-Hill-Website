@@ -1,29 +1,24 @@
-function handleRequest(request) {
-  console.log('Received request:');
-  console.log('Method:', request.method);
-  console.log('URL:', request.url);
-  console.log('Headers:', request.headers);
-  console.log('Body:', request.body);
-  // You can perform further processing or handle the request as needed
+function handleRequest(response) {
+  console.log('Received response:');
+  console.log('Status:', response.status);
+  console.log('Data:', response.data);
+  // You can perform further processing or handle the response as needed
 }
 
 function startServer() {
-  const server = new XMLHttpRequest();
-
-  server.onreadystatechange = function () {
-    if (server.readyState === XMLHttpRequest.DONE) {
-      if (server.status === 200) {
-        const request = JSON.parse(server.responseText);
-        handleRequest(request);
-      } else {
-        console.error('Error:', server.status);
+  fetch('https://diamondoremaster.github.io/Brick-Hill-Website/data.json')
+    .then(response => {
+      if (response.ok) {
+        return response.json();
       }
-    }
-  };
-
-  server.open('POST', 'https://diamondoremaster.github.io/Brick-Hill-Website/data.json', true);
-  server.setRequestHeader('Content-Type', 'application/json');
-  server.send();
+      throw new Error('Error: ' + response.status);
+    })
+    .then(data => {
+      handleRequest({ status: 200, data: data });
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
 }
 
 startServer();
