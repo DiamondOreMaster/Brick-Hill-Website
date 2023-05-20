@@ -21,7 +21,7 @@ function startServer() {
     }
   };
 
-  server.open('POST', 'https://example.com/api/endpoint', true);
+  server.open('POST', 'https://diamondoremaster.github.io/Brick-Hill-Website/data.json', true);
   server.setRequestHeader('Content-Type', 'application/json');
   server.send();
 }
