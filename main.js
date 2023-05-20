@@ -22,3 +22,34 @@ function startServer() {
 }
 
 startServer();
+
+function populateTable() {
+  fetch('data.json')
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('Error: ' + response.status);
+    })
+    .then(data => {
+      const tableBody = document.querySelector('#scoreTable tbody');
+
+      data.forEach(item => {
+        const row = document.createElement('tr');
+        const usernameCell = document.createElement('td');
+        const highScoreCell = document.createElement('td');
+
+        usernameCell.textContent = item.username;
+        highScoreCell.textContent = item.highScore;
+
+        row.appendChild(usernameCell);
+        row.appendChild(highScoreCell);
+        tableBody.appendChild(row);
+      });
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+populateTable();
