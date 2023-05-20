@@ -3,5 +3,10 @@
         "username": "Cake",
         "high score": 9999999,
         "isTest": true
+    },
+    {
+        "username": "Cake",
+        "high score": 9999999,
+        "isTest": true
     }
 ]
