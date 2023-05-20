@@ -35,6 +35,11 @@ function populateTable() {
       const tableBody = document.querySelector('#scoreTable tbody');
 
       data.forEach(item => {
+
+        if (item.isTest) {
+          return
+        };
+
         const row = document.createElement('tr');
         const usernameCell = document.createElement('td');
         const highScoreCell = document.createElement('td');
