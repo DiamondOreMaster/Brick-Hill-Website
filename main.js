@@ -49,6 +49,8 @@ function populateTable() {
         usernameCell.textContent = item.username;
         highScoreCell.textContent = item.highScore;
 
+        console.log(item.highScore)
+
         row.appendChild(usernameCell);
         row.appendChild(highScoreCell);
         tableBody.appendChild(row);
