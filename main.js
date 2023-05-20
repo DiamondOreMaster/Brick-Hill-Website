@@ -32,13 +32,15 @@ function populateTable() {
       throw new Error('Error: ' + response.status);
     })
     .then(data => {
-      const tableBody = document.querySelector('#scoreTable tbody');
+      const tableBody = document.querySelector('#scoreTableBody');
+
+      // Clear existing rows in the table body
+      tableBody.innerHTML = '';
 
       data.forEach(item => {
-
         if (item.isTest) {
-          return
-        };
+          return; // Skip if it's a test item
+        }
 
         const row = document.createElement('tr');
         const usernameCell = document.createElement('td');
