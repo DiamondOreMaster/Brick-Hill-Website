@@ -1,3 +1,16 @@
+const fs = require('fs');
+
+const data = { name: 'John', age: 30 };
+const jsonData = JSON.stringify(data);
+
+fs.writeFile('data.json', jsonData, 'utf8', (error) => {
+  if (error) {
+    console.error('Error:', error);
+  } else {
+    console.log('Data has been written to data.json');
+  }
+});
+
 function handleRequest(response) {
   console.log('Received response:');
   console.log('Status:', response.status);
